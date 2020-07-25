@@ -4,17 +4,30 @@ pipeline {
         stage('Publisher') {
             steps {
                 echo 'Hello World'
-                nexusArtifactUploader artifacts: [[artifactId: 'myjava',
-                                                   classifier: '',
-                                                   file: 'test/build/libs/test-1.0-SNAPSHOT.jar',
-                                                   type: 'jar']],
-                        credentialsId: 'nexus3',
-                        groupId: 'nexus3',
-                        nexusUrl: '192.168.1.148:8081',
-                        nexusVersion: 'nexus3',
-                        protocol: 'http',
-                        repository: 'test-snapshot',
-                        version: '1'
+//                nexusArtifactUploader artifacts: [[artifactId: 'myjava',
+//                                                   classifier: '',
+//                                                   file: 'test/build/libs/test-1.0-SNAPSHOT.jar',
+//                                                   type: 'jar']],
+//                        credentialsId: 'nexus3',
+//                        groupId: 'nexus3',
+//                        nexusUrl: '192.168.1.148:8081',
+//                        nexusVersion: 'nexus3',
+//                        protocol: 'http',
+//                        repository: 'test-snapshot',
+//                        version: '1'
+
+                nexusPublisher nexusInstanceId: 'Nexus3',
+                        nexusRepositoryId: 'test-snapshot',
+                        packages: [[$class: 'MavenPackage',
+                                    mavenAssetList: [[classifier: '',
+                                                      extension: '',
+                                                      filePath: 'test/build/libs/test-1.0-SNAPSHOT.jar']],
+                                    mavenCoordinate: [artifactId: 'myjava',
+                                                      groupId: 'test.com',
+                                                      packaging: 'jar',
+                                                      version: '1']]],
+                        tagName: 'build1'
+
             }
         }
     }
