@@ -9,7 +9,7 @@ pipeline {
                                                    file: 'test/build/libs/test-1.0-SNAPSHOT.jar', type: 'jar']],
                         credentialsId: 'nexus3',
                         groupId: 'nexus3',
-                        nexusUrl: '192.168.1.148:8081',
+                        nexusUrl: 'http://localhost:8081/repository/test1/',
                         nexusVersion: 'nexus3',
                         protocol: 'http',
                         repository: 'test1',
