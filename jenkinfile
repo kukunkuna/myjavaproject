@@ -13,7 +13,7 @@ pipeline {
                         nexusUrl: '192.168.1.148:8081',
                         nexusVersion: 'nexus3',
                         protocol: 'http',
-                        repository: 'Myrepo',
+                        repository: 'test1',
                         version: '2'
             }
         }
