@@ -4,7 +4,7 @@ pipeline {
         stage('Publisher') {
             steps {
                 echo 'Hello World'
-                nexusArtifactUploader artifacts: [[artifactId: 'myjava',
+                nexusArtifactUploader artifacts: [[artifactId: 'myjava-1',
                                                    classifier: '',
                                                    file: 'test/build/libs/test-1.0-SNAPSHOT.jar',
                                                    type: 'jar']],
