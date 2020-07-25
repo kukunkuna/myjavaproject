@@ -4,7 +4,6 @@ pipeline {
         stage('Publisher') {
             steps {
                 echo 'Hello World'
-                cleanWs()
                 nexusArtifactUploader artifacts: [[artifactId: 'myjava',
                                                    classifier: '',
                                                    file: 'test/build/libs/test-1.0-SNAPSHOT.jar',
