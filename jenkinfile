@@ -4,9 +4,11 @@ pipeline {
         stage('Publisher') {
             steps {
                 echo 'Hello World'
-                String determineRepoName() {
-                    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
-                }
+                url=https://github.com/kukunkuna/myjavaproject.git
+                basename=$(basename $url)
+                echo $basename
+                filename=${basename%.*}
+                echo $filename
 
 //                nexusArtifactUploader artifacts: [[artifactId: 'myjava',
 //                                                   classifier: '',
