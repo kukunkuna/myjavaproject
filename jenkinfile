@@ -4,10 +4,10 @@ pipeline {
         stage('Publisher') {
             steps {
                 echo 'Hello World'
-                url=https://github.com/kukunkuna/myjavaproject.git
-                basename=$(basename $url)
+                sh "url=https://github.com/kukunkuna/myjavaproject.git"
+                sh "basename=$(basename $url)"
                 echo $basename
-                filename=${basename%.*}
+                sh "filename=${basename%.*}"
                 echo $filename
 
 //                nexusArtifactUploader artifacts: [[artifactId: 'myjava',
