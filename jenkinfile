@@ -1,36 +1,20 @@
 pipeline {
     agent any
+
     stages {
-        stage('Publisher') {
+        stage('Hello') {
             steps {
                 echo 'Hello World'
-                url=git://github.com/kukunkuna/myjavaproject.git
-                reponame="$(echo $url | sed -r 's/.+\/([^.]+)(\.git)?/\1/')"
-                 echo "$reponame"
-//                nexusArtifactUploader artifacts: [[artifactId: 'myjava',
-//                                                   classifier: '',
-//                                                   file: 'test/build/libs/test-1.0-SNAPSHOT.jar',
-//                                                   type: 'jar']],
-//                        credentialsId: 'nexus3',
-//                        groupId: 'nexus3',
-//                        nexusUrl: '192.168.1.148:8081',
-//                        nexusVersion: 'nexus3',
-//                        protocol: 'http',
-//                        repository: 'test-snapshot',
-//                        version: '1'
-
-//                nexusPublisher nexusInstanceId: 'Nexus3',
-//                        nexusRepositoryId: 'test-snapshot',
-//                        packages: [[$class: 'MavenPackage',
-//                                    mavenAssetList: [[classifier: '',
-//                                                      extension: '',
-//                                                      filePath: 'test/build/libs/test-1.0-SNAPSHOT.jar']],
-//                                    mavenCoordinate: [artifactId: 'myjava',
-//                                                      groupId: 'test.com',
-//                                                      packaging: 'jar',
-//                                                      version: '1']]],
-//                        tagName: 'build1'
-
+                sh label: '', script: '''url="git@github.com/kukunkuna/myjavaproject.git"
+                re="^(https|git)(:\\/\\/|@)([^\\/:]+)[\\/:]([^\\/:]+)\\/(.+).git$"
+                if [[ $url =~ $re ]]; then    
+                protocol=${BASH_REMATCH[1]}
+                separator=${BASH_REMATCH[2]}
+                hostname=${BASH_REMATCH[3]}
+                user=${BASH_REMATCH[4]}
+                repo=${BASH_REMATCH[5]}
+            fi'''
+            echo "========$repo========"
             }
         }
     }
