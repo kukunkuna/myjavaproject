@@ -4,12 +4,9 @@ pipeline {
         stage('Publisher') {
             steps {
                 echo 'Hello World'
-                sh "url=https://github.com/kukunkuna/myjavaproject.git"
-                sh "basename=$(basename $url)"
-                echo $basename
-                sh "filename=${basename%.*}"
-                echo $filename
-
+                url=git://github.com/kukunkuna/myjavaproject.git
+                reponame="$(echo $url | sed -r 's/.+\/([^.]+)(\.git)?/\1/')"
+                 echo "$reponame"
 //                nexusArtifactUploader artifacts: [[artifactId: 'myjava',
 //                                                   classifier: '',
 //                                                   file: 'test/build/libs/test-1.0-SNAPSHOT.jar',
