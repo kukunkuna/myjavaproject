@@ -14,7 +14,7 @@ pipeline {
                 user=${BASH_REMATCH[4]}
                 repo=${BASH_REMATCH[5]}
             fi'''
-                sh "echo ${env.BRANCH_NAME}"
+                sh "echo ${env.GIT_URL}"
             }
         }
 
