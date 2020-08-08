@@ -1,0 +1,29 @@
+def arch_prefix() {
+    script {
+        return sh(script : 'uname -m', returnStdout: true).trim()
+    }
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+                        url="git@github.com/kukunkuna/myjavaproject.git"
+                        re="^(https|git)(:\\/\\/|@)([^\\/:]+)[\\/:]([^\\/:]+)\\/(.+).git$"
+                        if [[ $url =~ $re ]]; then    
+                        protocol=${BASH_REMATCH[1]}
+                        separator=${BASH_REMATCH[2]
+                        hostname=${BASH_REMATCH[3]}
+                        user=${BASH_REMATCH[4]}
+                        return repo=${BASH_REMATCH[5]}
+                        fi'''
+                    }
+                        echo "--------$myrepo----------"
+                    }
+                }
+            }
+        }
+    }
