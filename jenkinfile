@@ -5,7 +5,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                echo '${BUILD_DESCRIPTION}'
+                sh "printenv"
                 sh label: '', script: '''url="git@github.com/kukunkuna/myjavaproject.git"
                 re="^(https|git)(:\\/\\/|@)([^\\/:]+)[\\/:]([^\\/:]+)\\/(.+).git$"
                 if [[ $url =~ $re ]]; then    
