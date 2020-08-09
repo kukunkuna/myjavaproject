@@ -6,6 +6,10 @@ pipeline {
             steps {
                 echo 'Hello World'
                 sh "printenv"
+                final scmVars = checkout(scm)
+                echo "scmVars: ${scmVars}"
+                echo "scmVars.GIT_COMMIT: ${scmVars.GIT_COMMIT}"
+                echo "scmVars.GIT_BRANCH: ${scmVars.GIT_BRANCH}"
                 sh label: '', script: '''url="git@github.com/kukunkuna/myjavaproject.git"
                 re="^(https|git)(:\\/\\/|@)([^\\/:]+)[\\/:]([^\\/:]+)\\/(.+).git$"
                 if [[ $url =~ $re ]]; then    
